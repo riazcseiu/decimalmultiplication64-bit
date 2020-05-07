@@ -21,14 +21,14 @@
 
 // This inline macro for RISCV ISA for using GEM-5 or Framework
 // Need to comment out for GCC compiler to Intel processor 
-/*
+
 unsigned long read_cycles(void)
 		{
 	     unsigned long cycles;
 	     asm volatile ("rdcycle %0" : "=r" (cycles));
          return cycles;
 		}
-*/
+
 int main() {
 	decDouble a, b , c,d, temp1,temp2;// working numbers 64 bit format
 	decContext set;                  // working context
@@ -16254,7 +16254,7 @@ unsigned long cyclestart,cycleend,cyclestart_ex,cycleend_ex; // declare for cloc
 int     total_cycle_software[8000], total_cycle_method[8000];
 double  total_time_software[8000], total_time_method[8000];	
 
-			
+//Myend			
 	 //accum_load(0, &data);
 	//	printf("data is %ld\n",data);
         
@@ -16279,8 +16279,8 @@ double  total_time_software[8000], total_time_method[8000];
 			temp1 = a; temp2 = b; 
 			
 
-           begin_decimal = clock(); //Start count Time comment for Cycle cout
-			//cyclestart_ex = read_cycles(); // Srart count Cycle comment for time count
+          // begin_decimal = clock(); //Start count Time comment for Cycle cout
+	cyclestart_ex = read_cycles(); // Srart count Cycle comment for time count
            
 			for(int m=0;m<500000;m++) //doing the same operation repet
 			{ 
@@ -16288,11 +16288,11 @@ double  total_time_software[8000], total_time_method[8000];
 				decDoubleMultiply(&a, &a, &b, &set);   // a=aXb
               
 			}
-            //cycleend_ex = read_cycles(); // end Cycle
-           end_decimal = clock(); // End time comment for RISC-V
+            cycleend_ex = read_cycles(); // end Cycle
+               // end_decimal = clock(); // End time comment for RISC-V
 
-  //total_cycle_software[c1] = cycleend_ex - cyclestart_ex;
-  total_time_software[c1] = ((double)( end_decimal- begin_decimal) / CLOCKS_PER_SEC );			
+  total_cycle_software[c1] = cycleend_ex - cyclestart_ex;
+  //total_time_software[c1] = ((double)( end_decimal- begin_decimal) / CLOCKS_PER_SEC );			
 
     // for debug pirnt
     //printf("Took %lu cycles to Original Library \n", total_cycle_software[c1]);
@@ -16314,7 +16314,7 @@ double  total_time_software[8000], total_time_method[8000];
    // printf("%s x %s => %s\n", multiplicand[c1], multiplaier[c1], string1);
 	}
 
-/*
+
 
                   //calculating avg. Number of Cycle in SW library
                   
@@ -16341,8 +16341,8 @@ double  total_time_software[8000], total_time_method[8000];
 				   printf("===================================================\n");
           
 //-------------------------------Real Implementation time Calculation-----------------
-*/
 
+/*
                   //calculating avg. Number of Cycle in SW library upar block must me comment out
                   float SWavgResult=0, SWavgRounding=0, SWavgOverflow=0, SWavgUnderflow=0;
                
@@ -16367,7 +16367,7 @@ double  total_time_software[8000], total_time_method[8000];
 
 
 
-//*/
+*/
 
 //--------------------------------Softeare library END----------------------------------
  
@@ -16390,10 +16390,10 @@ double  total_time_software[8000], total_time_method[8000];
 	 
 	  
 
-      //cyclestart = read_cycles();
+      cyclestart = read_cycles();
 
 
-      begin_modify = clock();
+      //begin_modify = clock();
       for (int m = 0; m<500000; m++) //doing the same operation repet
 	  {
 		  c = temp1; d = temp2;
@@ -16404,10 +16404,10 @@ double  total_time_software[8000], total_time_method[8000];
 	    
                   
        }
-      //cycleend = read_cycles();
-	end_modify = clock();
-       //total_cycle_method[c2]=cycleend - cyclestart;
-      total_time_method[c2]= ((double)(end_modify- begin_modify) / CLOCKS_PER_SEC);	
+      cycleend = read_cycles();
+//	end_modify = clock();
+       total_cycle_method[c2]=cycleend - cyclestart;
+    //  total_time_method[c2]= ((double)(end_modify- begin_modify) / CLOCKS_PER_SEC);	
        
 //printf("Took %lu cycles to Method-1 dumy \n", cycleend - cyclestart);
 
@@ -16421,7 +16421,7 @@ double  total_time_software[8000], total_time_method[8000];
 	 // printf("===================================%s x %s => %s\n", multiplicand[c2], multiplaier[c2], string1);
 	}
 
-/*
+
                  //Cycle Calculation Incase of time in real implementation Must comment out
                  
                   float MethodavgResult=0, MethodavgRounding=0, MethodavgOverflow=0, MethodavgUnderflow=0;
@@ -16444,8 +16444,8 @@ double  total_time_software[8000], total_time_method[8000];
                    MethodavgUnderflow=MethodavgUnderflow+total_cycle_method[Mavgunderflow];
                    printf("Avg. CYCLE 64-bit Method Underflow =%f\n",MethodavgUnderflow/2000);
                    
-*/
-                  //Real Implementation Using Clock time
+
+/*                  //Real Implementation Using Clock time
 
                    float MethodavgResult=0, MethodavgRounding=0, MethodavgOverflow=0, MethodavgUnderflow=0;
                
@@ -16469,7 +16469,7 @@ double  total_time_software[8000], total_time_method[8000];
 
 
 
-
+*/
 
 
 

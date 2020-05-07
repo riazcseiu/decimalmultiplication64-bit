@@ -1145,7 +1145,7 @@ static void decFiniteMultiply(bcdnum *num, uByte *bcdacc,
 ////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 //to test method 4 we need to modify original function 	decFiniteMultiply	 
-	  int methodnumber =7;        //4 = Method-1 : BCD conversion Method-1
+	  int methodnumber =4;        //4 = Method-1 : BCD conversion Method-1
                                    //1 = Method-2 calculating 1X-9X in base billion
                                    //5 = Method-3 
 							      //2 = using base thousand addition New Method
